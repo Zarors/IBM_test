@@ -7,18 +7,18 @@ pilotosDf = pd.read_csv(r'pilotos.csv',encoding='cp1252')
 #b) y c):
 ##Df que contiene el nombre del piloto
 mergedDf=pd.merge(vuelosDf, pilotosDf , on='Codigo Piloto')
-#mergedDf.to_csv('output_B_C.csv')
+mergedDf.to_csv('output/output_B_C.csv')
 
 
 #d):
 mergedDf = mergedDf.drop(mergedDf[mergedDf['Origen'] == mergedDf['Destino']].index)
-#mergedDf.to_csv('output_D.csv')
+mergedDf.to_csv('output/output_D.csv')
 
 #e):
 mergedDf.loc[mergedDf['Minutos de retraso'].abs() <= 30, 'OnTime'] = 'A'
 mergedDf.loc[(mergedDf['Minutos de retraso'].abs() > 30) & (mergedDf['Minutos de retraso'].abs() <=50),'OnTime'] = 'B'
 mergedDf.loc[mergedDf['Minutos de retraso'].abs() > 50, 'OnTime'] = 'C'
-mergedDf.to_csv('output_E.csv')
+mergedDf.to_csv('output/output_E.csv')
 print(mergedDf)
 
 
